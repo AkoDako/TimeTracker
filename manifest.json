@@ -1,10 +1,10 @@
 {
     "manifest_version": 3,
-    "name": "UC Grabber",
+    "name": "TimeTracker",
     "version": "0.1",
     
     "action": {
       "default_popup": "popup.html",
-      "default_title": "Grabber for uChicago Canvas!"
+      "default_title": "TimeTracker by Lanney Wang"
     }
   }
