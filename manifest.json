@@ -6,5 +6,9 @@
     "action": {
       "default_popup": "popup.html",
       "default_title": "TimeTracker by Lanney Wang"
+    },
+    
+    "background": {
+        "service-worker": "/scripts/background.js"
     }
   }
