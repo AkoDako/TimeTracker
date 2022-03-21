@@ -2,13 +2,17 @@
     "manifest_version": 3,
     "name": "TimeTracker",
     "version": "0.1",
-    
+    "permissions": [
+      "activeTab",
+      "scripting",
+      "tabs"
+    ],
     "action": {
       "default_popup": "popup.html",
       "default_title": "TimeTracker by Lanney Wang"
     },
     
     "background": {
-        "service-worker": "/scripts/background.js"
+        "service-worker": "background.js"
     }
   }
