@@ -3,16 +3,23 @@
     "name": "TimeTracker",
     "version": "0.1",
     "permissions": [
+      "storage",
       "activeTab",
       "scripting",
       "tabs"
     ],
+
+    "icons": {
+      "48": "/images/icon48.png",
+      "128": "/images/icon128.png"
+    },
+
     "action": {
       "default_popup": "popup.html",
       "default_title": "TimeTracker by Lanney Wang"
     },
     
     "background": {
-        "service-worker": "background.js"
+        "service_worker": "background.js"
     }
   }
