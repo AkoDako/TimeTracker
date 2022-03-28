@@ -1,14 +1,14 @@
 /*Code property of Lanney Wang*/
 
-chrome.tabs.onActivated.addListener( async function getCurrentTab() {
-  let queryOptions = { active: true, lastFocusedWindow: true };
-  let [tab] = await chrome.tabs.query(queryOptions);
-  //console.log(tab.title);
-  console.log(tab[0].url);
-  let url = new URL(tab[0].url);
-  let domain = url.domain;
-  console.log(domain);
-  chrome.storage.sync.set({ "recentlyVisited": domain }, function() {});
+chrome.tabs.onActivated.addListener( function(activeInfo) {
+  //let queryOptions = { active: true, lastFocusedWindow: true };
+  let url = new URL('https://www.google.com');
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    url = new URL(tabs[0].url);
+    console.log(url.hostname);
+    chrome.storage.sync.set({ "recentlyVisited": url.hostname }, function() {});
+  });
+  
   const d = new Date();
   let time = d.getTime();
   chrome.storage.sync.set({ "lastTime": time }, function() {});
@@ -26,17 +26,17 @@ chrome.tabs.onActivated.addListener( async function getCurrentTab() {
 
 chrome.alarms.onAlarm.addListener(async function(alarm) {
   if (alarm.name === "1min") {
-    let currentDomain;
-    let tab = getCurrentTab();
-    let url = new URL(tab[0].url);
-    currentDomain = url.domain;
-    let last;
-    chrome.storage.sync.get( "recentlyVisited", function (lastVisited) {
-      last = lastVisited;
-      console.log(`last: ${last} current domain: ${currentDomain}`);
-      if (last == currentDomain) {
+    //let queryOptions = { active: true, currentWindow: true };
+    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+      let url = new URL(tabs[0].url);
+      console.log(url.hostname);
+      let currentDomain = url.hostname;
+      chrome.storage.sync.get( "recentlyVisited", function (lastVisited) {
+      console.log(`last: ${lastVisited.recentlyVisited} current domain: ${currentDomain}`);
+      if (lastVisited.recentlyVisited == currentDomain) {
         console.log("domains match");
       }
+    });
     });
   }
 });
