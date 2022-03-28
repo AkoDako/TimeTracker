@@ -6,7 +6,8 @@
       "storage",
       "activeTab",
       "scripting",
-      "tabs"
+      "tabs",
+      "alarms"
     ],
 
     "icons": {
